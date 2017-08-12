@@ -14,10 +14,11 @@ defmodule ElixirReleaseExampleWeb.Router do
   end
 
   scope "/", ElixirReleaseExampleWeb do
-    # pipe_through :browser # Use the default browser stack
+    pipe_through :browser # Use the default browser stack
 
     # get "/", PageController, :index
     get "/", EnvVarsController, :index
+    resources "/posts", PostController
   end
 
   # Other scopes may use custom stacks.
