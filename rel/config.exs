@@ -43,5 +43,8 @@ release :elixir_release_example do
   set applications: [
     :runtime_tools
   ]
+  set commands: [
+    "migrate": "rel/commands/migrate.sh",
+    "quack": "rel/commands/quack.sh"
+  ]
 end
-

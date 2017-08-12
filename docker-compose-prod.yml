@@ -11,6 +11,7 @@ services:
       - db
     environment:
       ENV_TAG: web_container_qa
+    # command: bin/myapp migrate
 
   web2:
     image: release_image
