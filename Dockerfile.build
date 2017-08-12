@@ -1,0 +1,30 @@
+FROM elixir:1.5.1
+
+ENV APP /code
+ENV REPLACE_OS_VARS true
+ENV MIX_ENV prod
+
+RUN mix local.hex --force
+RUN mix local.rebar --force
+
+RUN mkdir -p $APP
+WORKDIR $APP
+
+COPY mix.exs $APP
+COPY mix.lock $APP
+RUN mix do deps.get, deps.compile
+
+COPY . $APP
+
+RUN mix do compile, release --verbose --env=prod && \
+    mkdir -p /opt/elixir_release_example/log && \
+    cp _build/prod/rel/elixir_release_example/releases/0.0.1/elixir_release_example.tar.gz /opt/elixir_release_example/ && \
+    cd /opt/elixir_release_example && \
+    tar -xzf elixir_release_example.tar.gz && \
+    rm elixir_release_example.tar.gz && \
+    rm -rf /opt/app/* && \
+    chmod -R 777 /opt/elixir_release_example
+
+WORKDIR /opt/elixir_release_example
+
+CMD ./bin/elixir_release_example foreground

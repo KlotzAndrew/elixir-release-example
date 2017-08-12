@@ -4,6 +4,12 @@ defmodule ElixirReleaseExampleWeb.EnvVarsController do
   def index(conn, _params) do
     conn
       |> put_status(200)
-      |> json(System.get_env())
+      |> json(payload())
+  end
+
+  defp payload do
+    %{
+      System.get_env("HOSTNAME") => System.get_env("ENV_TAG")
+    }
   end
 end

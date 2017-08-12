@@ -56,8 +56,12 @@ config :logger, level: :info
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
 #
-#     config :elixir_release_example, ElixirReleaseExampleWeb.Endpoint, server: true
-#
+config :elixir_release_example, ElixirReleaseExampleWeb.Endpoint,
+  http: [port: 4000],
+  url: [host: "0.0.0.0", port: 4000],
+  server: true,
+  version: Application.spec(:myapp, :vsn)
+
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
