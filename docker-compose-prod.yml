@@ -4,7 +4,7 @@ services:
     image: postgres
 
   web1:
-    image: builder_image
+    image: release_image
     ports:
       - "4000:4000"
     depends_on:
@@ -13,7 +13,7 @@ services:
       ENV_TAG: web_container_qa
 
   web2:
-    image: builder_image
+    image: release_image
     ports:
       - "4001:4000"
     depends_on:
@@ -22,7 +22,7 @@ services:
       ENV_TAG: web_container_demo
 
   web3:
-    image: builder_image
+    image: release_image
     ports:
       - "4002:4000"
     depends_on:

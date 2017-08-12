@@ -1,10 +1,9 @@
 FROM elixir:1.5.1
 
 ENV APP /code
-ENV REPLACE_OS_VARS true
 
-RUN mix local.hex --force
-RUN mix local.rebar --force
+RUN mix local.hex --force && \
+    mix local.rebar --force
 
 RUN mkdir -p $APP
 WORKDIR $APP
