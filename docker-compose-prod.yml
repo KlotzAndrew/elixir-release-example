@@ -11,7 +11,7 @@ services:
       - db
     environment:
       ENV_TAG: web_container_qa
-    # command: bin/myapp migrate
+    # command: bin/elixir_release_example migrate
 
   web2:
     image: release_image

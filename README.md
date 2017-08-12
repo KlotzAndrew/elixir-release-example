@@ -1,19 +1,24 @@
-# ElixirReleaseExample
+# Elixir Release Example
 
-To start your Phoenix server:
+Two methods for building a release
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Start Phoenix endpoint with `mix phx.server`
+### Mix
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+This will run the app using mix (e.g. `mix phx.server`)
+```bash
+`docker-compose up`
+```
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+The image will have access to regular mix tasks like `mix ecto.migrate`
 
-## Learn more
+### Distillery
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+This will compile a release using distillery
+```bash
+./build_release # builds release_image
+
+`docker-compose -f docker-compose-prod.yml up`
+```
+
+The release image will not have access to mix but tasks can be added to the
+elixir release like `bin/elixir_release_example migrate`
